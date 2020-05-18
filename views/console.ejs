@@ -1,0 +1,30 @@
+
+<a href="/">Main</a><br>
+
+<%- include('partials/loggedInHeader')%>            <!-- imported forms from loggedInHeader.ejs -->
+
+
+<!-- // to enter Articles-----------> 
+
+<form action="/article/add" method="post">
+    <label>title</label>
+    <input type="text" name="title" placeholder="title"><br>
+    <label>description</label>
+    <input type="text" name="description"><br>                   <!--Auther absent but user itself is Auther-->
+    <input type="submit" value="ADD">
+
+</form>
+
+<hr>
+<% userArticles.forEach(e => {  %>  <!-- forEach ask call back fxn (with e as a variable to pass 1st element and then loop) -->
+    <ul>
+        <li><strong><%= e.title %></strong> </li> 
+        <!-- <li><%= e.auther %> </li>  -->
+        <li><%= e.description %> </li> 
+        <a href='/article/Edit/<%=e._id%>'><button>Edit</button></a>
+        <a href='/article/Delete/<%=e._id%>'><button>Delete</button></a>
+
+        
+    </ul>
+
+   <% }) %>

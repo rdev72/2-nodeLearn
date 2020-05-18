@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=  title %></title>
+</head>                   
+<body>
+   <h3>Articles</h3>          <!--  // getting Data from Back--appling forEach on articles(Array) -->
+    <% if(user){ %>
+        <a href="/console">Console</a>
+        <%- include('partials/loggedInHeader')%>            <!-- imported forms from loggedInHeader.ejs -->
+   <% }else{ %>
+    <%- include('partials/auth')%>            <!-- imported forms from auth.ejs -->
+    <% } %>
+
+   <% data.forEach(e => {  %>  <!-- forEach ask call back fxn (with e as a variable to pass 1st elemet and then loop) -->
+    <ul>
+        <li><%= e.title %> </li> 
+        <li><%= e.name %> </li> 
+        <li><%= e.description %> </li>
+        <li><% e.comment.forEach(c => { %>
+            <p><%= c.comment %> By <strong><%= c.auther.Name %></strong> </p>
+            <% }) %></li> 
+    </ul>
+
+    <!-- Add comment -->
+   <form action="/comment/add/<%=e._id %>" method="post">
+    <label>comment</label>
+    <input type="text" name="comment">
+    <input type="submit" value="Comment"></form>
+
+   <% }) %>   
+
+   
+   
+ 
+</body>
+</html>
